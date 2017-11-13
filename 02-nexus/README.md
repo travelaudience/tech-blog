@@ -60,24 +60,24 @@ In order to deliver, we have [designed](https://github.com/travelaudience/nexus-
 
 Interestingly enough, later we would found out this option would make it much easier to fix other issues, unrelated to authentication, e.g. Nexus can't expose Docker private registry with the same set-up used to expose the other artifact repositories which would defeat the decision of using HTTPS for everything. It also replaced Nginx as the reverse-proxy behind GCLB.
 
-### Nexus back-up
+### Nexus backup
 
-Nexus can be configured to back-up its internal database on a regular basis. However, this process does not take blob stores into account. Furthermore, the back-ups are persisted in the local disk alone, meaning if the disk is lost, the back-ups are lost too.
+Nexus can be configured to back up its internal database on a regular basis. However, this process does not take blob stores into account. Furthermore, the backups are persisted in the local disk alone, meaning if the disk is lost, the backups are lost too.
 
-So, we came up with a tool, [`nexus-backup`](https://github.com/travelaudience/docker-nexus-backup) (a container made up of a bunch of scripts), to execute the back-up procedure and then upload the result to Cloud Storage.
+So, we came up with a tool, [`nexus-backup`](https://github.com/travelaudience/docker-nexus-backup) (a container made up of a bunch of scripts), to execute the backup procedure and then upload the result to Cloud Storage.
 
 ![alt text](nexus-backup.png "Nexus backup design")
 
 1. Nexus' blobstores are stored in a Google Persistent Disk (PD) accessible by `nexus-backup`.
-2. A file used to trigger back-ups is also stored in the same PD.
-3. A task configured in Nexus periodically dumps a back-up of the Nexus database to the same PD.
-4. Another tasks, configured in Nexus, signals that a back-up is undergoing by touching the trigger file.
-5. `nexus-backup` watches the trigger file and, whenever the trigger file is touched, starts the blobstore back-up procedure.
-6. `nexus-backup` fecthes the Nexus database dump and blobstore backup files from the PD.
-7. `nexus-backup` uploads the back-up to a pre-configured Cloud Storage bucket.
-8. A recovery procedure may be conducted by copying a back-up to a PD attached to Nexus. Nexus will pick the back-up and restore it automatically upon restart.
+2. A file used to trigger backups is also stored in the same PD.
+3. A task configured in Nexus periodically dumps a backup of the Nexus database to the same PD.
+4. Another task, configured in Nexus, signals that a backup is occurring by touching the trigger file.
+5. `nexus-backup` watches the trigger file and, whenever the trigger file is touched, starts the blobstore backup procedure.
+6. `nexus-backup` fetches the Nexus database dump and blobstore backup files from the PD.
+7. `nexus-backup` uploads the backup to a pre-configured Cloud Storage bucket.
+8. A recovery procedure may be conducted by copying a backup to a PD attached to Nexus. Nexus will pick the backup and restore it automatically upon restart.
 
-Worthy of note, whenever a lock file has been present for more than 12 hours (probably meaning a failed back-up), the lock file is removed so that further back-ups can happen.
+Worthy of note, whenever a lock file has been present for more than 12 hours (probably meaning a failed backup), the lock file is removed so that further backups can happen.
 
 ### Nexus lifecycle management & usage
 
