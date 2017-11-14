@@ -56,7 +56,7 @@ After a thoughtful design process, this is what we came up with:
 
 We knew beforehand that we would need to authenticate Nexus against Cloud IAM but we wanted to make this authentication optional so that the tool we would design and implement could be used by others, in simpler scenarios, e.g. no Cloud IAM.
 
-In order to deliver, we have [designed](https://github.com/travelaudience/nexus-proxy/blob/master/docs/design.md) and implemented [`nexus-proxy`](https://github.com/travelaudience/nexus-proxy/blob/master/docs/design.md).
+In order to deliver, we have [designed](https://github.com/travelaudience/nexus-proxy/blob/master/docs/design.md) and implemented [`nexus-proxy`](https://github.com/travelaudience/nexus-proxy).
 
 Interestingly enough, later we would found out this option would make it much easier to fix other issues, unrelated to authentication, e.g. Nexus can't expose Docker private registry with the same set-up used to expose the other artifact repositories which would defeat the decision of using HTTPS for everything. It also replaced Nginx as the reverse-proxy behind GCLB.
 
