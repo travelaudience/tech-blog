@@ -45,7 +45,7 @@ After a thoughtful design process, this is what we came up with:
 
 ![alt text](big-picture.png "TA Nexus big picture")
 
-1. Developer tools, such as Maven and Dockerm and GKE reach Nexus through a Google Cloud Load-Balancer (GCLB) instance.
+1. Developer tools, such as Maven and Docker and GKE reach Nexus through a Google Cloud Load-Balancer (GCLB) instance.
 2. The GCLB instance directs incoming traffic to an instance of `nexus-proxy`.
 3. `nexus-proxy` checks the request headers for user-identity and then for GCP Organization membership using the Cloud IAM APIs.
 4. If the user is authorized, `nexus-proxy` redirects incoming traffic to Nexus.
