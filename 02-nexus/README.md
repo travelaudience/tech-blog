@@ -16,18 +16,18 @@ Given how heterogeneous our apps and deployment environments look like, we quick
 
 ## The Search and Decision
 
- The hunt for a repository manager solution began and we started looking for solutions that would satisfy, at least, the following criteria:
-- Able to securely store and distribute private:
+The hunt for a repository manager solution began and we started looking for solutions that would satisfy, at least, the following criteria:
+1. Securely store and distribute private:
   - JAR (Java ARchive) packages, containing Java and Scala code;
   - Python packages (PyPI);
   - Docker containers;
-- Able to cache and securely distribute public:
+2. Securely distribute public:
   - JAR (Java ARchive) packages, containing Java and Scala code;
   - Python packages (PyPI);
   - Docker containers;
-- Able to integrate with external authentication systems, and maybe authorization
-- Easy to run and maintain in a highly-available fashion
-- Able to recover in a disaster scenario (Disaster Recovery)
+3. Integrate with external authentication systems, and maybe authorization.
+4. Easy to run and maintain in a highly-available fashion.
+5. Able to recover in a disaster scenario (Disaster Recovery).
 
 Time was of essence so we narrowed down our trials to a couple contenders, [Sonatype Nexus](https://www.sonatype.com/nexus-repository-sonatype) and [JFrog Artifactory](https://www.jfrog.com/artifactory/). And long story made short, we decided to go with the Nexus, mostly because the OSS version seemed to deliver most of what we were looking for.
 
