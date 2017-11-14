@@ -37,8 +37,8 @@ After the decision was made, our Ops team devised a plan and set sail to adapt N
 
 At this point, our Ops team had already identified certain limitations we would have to overcome:
 - Caching Docker containers in Nexus is complex, therefore we decided to drop it for the time being.
-- Integration with Google Cloud Identity Access Management (Cloud IAM) is inexistant, so we would have to design and implement it.
-- Integration with Google Cloud Storage for backup storage and retrieval is inexistant, so we would have to design and implement it.
+- Integration with Google Cloud Identity Access Management (Cloud IAM) is nonexistent, so we would have to design and implement it.
+- Integration with Google Cloud Storage for backup storage and retrieval is nonexistent, so we would have to design and implement it.
 - There's no official support for Kubernetes, the container orchestration solution in place at TA, so we would have to work on it.
 
 After a thoughtful design process, this is what we came up with:
